@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VortexMC Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="brand"><span class="brand-dot"></span> Vortex<span>MC</span></div>
+    <a href="#ranks">Ranks</a>
+    <a href="#how">How it works</a>
+    <a class="discord" href="https://discord.com/" target="_blank">Discord</a>
+  </nav>
+
+  <header class="hero">
+    <div class="badge">⚡ VORTEXMC STORE</div>
+    <h1>Upgrade your<br><span>VortexMC</span> experience.</h1>
+    <p>Choose your rank, pay securely, then continue to Discord for your order ticket.</p>
+    <a class="primary" href="#ranks">View Ranks →</a>
+  </header>
+
+  <main>
+    <section id="ranks" class="section">
+      <div class="section-title">
+        <div><small>STORE</small><h2>Choose a Rank</h2></div>
+        <p>Instant order flow • Discord support</p>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="rank-icon">◆</div>
+          <h3>VIP</h3><p class="desc">Perfect for starting your VortexMC journey.</p>
+          <div class="price">₹99 <span>/ one-time</span></div>
+          <button onclick="openPay('VIP',99)">Buy VIP</button>
+        </article>
+        <article class="card featured">
+          <div class="popular">POPULAR</div>
+          <div class="rank-icon">✦</div>
+          <h3>VORTEX</h3><p class="desc">More perks and a premium server experience.</p>
+          <div class="price">₹199 <span>/ one-time</span></div>
+          <button onclick="openPay('VORTEX',199)">Buy Vortex</button>
+        </article>
+        <article class="card">
+          <div class="rank-icon">★</div>
+          <h3>LEGEND</h3><p class="desc">For players who want the full premium experience.</p>
+          <div class="price">₹299 <span>/ one-time</span></div>
+          <button onclick="openPay('LEGEND',299)">Buy Legend</button>
+        </article>
+      </div>
+    </section>
+
+    <section id="how" class="how section">
+      <div class="section-title"><div><small>PROCESS</small><h2>How it works</h2></div></div>
+      <div class="steps">
+        <div><b>01</b><h3>Select</h3><p>Choose the rank you want.</p></div>
+        <div><b>02</b><h3>Pay</h3><p>Scan the QR and complete payment.</p></div>
+        <div><b>03</b><h3>Discord</h3><p>Continue to Discord and create your ticket.</p></div>
+        <div><b>04</b><h3>Receive</h3><p>Staff verifies your order and delivers the rank.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 VortexMC • Official Store</footer>
+
+  <div class="modal" id="paymentModal">
+    <div class="modal-box">
+      <button class="close" onclick="closePay()">×</button>
+      <div class="modal-head"><small>ORDER PAYMENT</small><h2 id="orderTitle">VIP</h2><p id="orderAmount">₹99</p></div>
+      <div class="qr-wrap">
+        <div class="fake-qr" aria-label="Placeholder QR">
+          <div class="qr-grid"></div>
+          <strong>QR</strong>
+          <small>PLACEHOLDER</small>
+        </div>
+      </div>
+      <p class="note">This is a placeholder QR. Replace it with your authorized VortexMC payment QR before going live.</p>
+      <div class="upi">UPI ID: <b>your-upi@upi</b></div>
+      <button class="primary full" onclick="continueDiscord()">Payment Complete → Discord</button>
+      <p class="tiny">For production, connect this button to a real payment verification/webhook system. Do not verify payments from screenshots alone.</p>
+    </div>
+  </div>
+
+  <script>
+    let selectedRank = "", selectedAmount = 0;
+    function openPay(rank, amount) {
+      selectedRank = rank; selectedAmount = amount;
+      document.getElementById("orderTitle").textContent = rank;
+      document.getElementById("orderAmount").textContent = "₹" + amount;
+      document.getElementById("paymentModal").classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+    function closePay() {
+      document.getElementById("paymentModal").classList.remove("show");
+      document.body.style.overflow = "";
+    }
+    function continueDiscord() {
+      // Replace with your Discord invite/OAuth URL after payment verification is implemented.
+      const invite = "https://discord.com/";
+      window.open(invite, "_blank");
+    }
+    window.onclick = e => { if (e.target.id === "paymentModal") closePay(); };
+  </script>
+</body>
+</html>
